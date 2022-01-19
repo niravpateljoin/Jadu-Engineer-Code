@@ -1,10 +1,24 @@
-PHP and symfony version for this project 
--> php version is 7.4.27
--> symfony version 5.3
+## System requirements
 
-need to run this commands.
+* Linux OR Windows OS
 
--> composer update
--> symfony server:start
+* Also Required Symfony installed in that system
 
-Then you can access it on server where terminal show you url
+* PHP 7.2+
+
+* Web-server (XAMPP or WAMP);
+
+## Configure and run the sample
+
+1. Download or clone the Jadu-Engineer-Code.
+
+2. Open the Project in your favorite IDE.
+
+3. Install the project's dependencies:
+
+   ```composer install```
+   OR
+   ```composer update```
+4. Once all dependancy installed please run ```symfony server:start```
+
+5. Navigate to `http://127.0.0.1:8000` in your web browser.

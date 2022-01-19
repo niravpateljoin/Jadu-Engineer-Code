@@ -2,12 +2,13 @@
 
 namespace App\Controller;
 
+use App\Form\AnagramType;
+use App\Form\PalindromeType;
+use App\Form\PangramType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class CheckerController extends AbstractController
 {
@@ -28,17 +29,7 @@ class CheckerController extends AbstractController
      */
     public function isPalindrome(Request $request): Response
     {
-        $form = $this->createFormBuilder()
-            ->add('palindrome', TextType::class,[
-                'attr' => [
-                    'class' => 'form-control',
-                    'value' => '',
-                    'placeholder' => 'enter text for palindrome',
-                ],
-                'required' => false,
-                'label' => false,
-            ])
-            ->getForm();
+        $form = $this->createForm(PalindromeType::class);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
@@ -77,29 +68,12 @@ class CheckerController extends AbstractController
     public function isAnagram(Request $request) : Response
     {
 
-        $form = $this->createFormBuilder()
-            ->add('First_Text', TextType::class,[
-                'attr' => [
-                    'class' => 'form-control',
-                    'value' => '',
-                    'placeholder' => 'enter Main text for anagram',
-                ],
-                'required' => false,
-            ])
-            ->add('Comparison_Text', TextType::class,[
-                'attr' => [
-                    'class' => 'form-control',
-                    'value' => '',
-                    'placeholder' => 'enter Compare text for anagram',
-                ],
-                'required' => false,
-            ])
-            ->getForm();
+        $form = $this->createForm(AnagramType::class);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
-            $text = $data['First_Text'];
-            $comparison = $data['Comparison_Text'];
+            $text = $data['firstText'];
+            $comparison = $data['comparisonText'];
             if($text != null && $comparison != null)
             {
                 if (count_chars($text, 1) == count_chars($comparison, 1))
@@ -138,17 +112,7 @@ class CheckerController extends AbstractController
      */
     public function isPangram(Request $request) : Response
     {
-        $form = $this->createFormBuilder()
-            ->add('pangram', TextType::class,[
-                'attr' => [
-                    'class' => 'form-control',
-                    'value' => '',
-                    'placeholder' => 'enter text for pangram',
-                ],
-                'required' => false,
-                'label' => false,
-            ])
-            ->getForm();
+        $form =$this->createForm(PangramType::class);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
@@ -192,7 +156,6 @@ class CheckerController extends AbstractController
                 );
             }
             return $this->redirectToRoute('check_pangram');
-
         }
         return $this->render('checker/pangram.html.twig',[
             'form' => $form->createView()
