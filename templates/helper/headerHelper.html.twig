@@ -1,0 +1,15 @@
+<header id="header" class="fixed-top">
+    <div class="container d-flex align-items-center justify-content-between">
+
+        <h1 class="logo"><a href="#">Code Exercise</a></h1>
+        <nav id="navbar" class="navbar">
+            <ul>
+                <li><a class="nav-link scrollto {% if active == 'home' %} active {% endif %}" href="/">Home</a></li>
+                <li><a class="nav-link scrollto {% if active == 'palidrome' %} active {% endif %}" href="{{ path('check_palidrome') }}">Check Palidrome</a></li>
+                <li><a class="nav-link scrollto {% if active == 'anagram' %} active {% endif %}" href="{{ path('check_anagram') }}">Check Anagram</a></li>
+                <li><a class="nav-link scrollto {% if active == 'pangram' %} active {% endif %}" href="{{ path('check_pangram') }}">Check Pangram</a></li>
+            </ul>
+            <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav>
+    </div>
+</header>

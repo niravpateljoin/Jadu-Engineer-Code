@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+{% set active = 'anagram' %}
+{% set title = 'anagram Check' %}
+{% block content%}
+    <div class="container-fluid palindrome_block">
+        <h3 class="text-center">Anagram String Check</h3>
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <div class="md-3 text-center">
+            <input type="submit" name="check" value="check" class="btn btn-success">
+        </div>
+        {{ form_end(form) }}
+    </div>
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="alert alert-{{ label}} mt-3" role="alert">
+                <strong>{{ message }}</strong>
+            </div>
+        {% endfor %}
+    {% endfor %}
+{% endblock %}

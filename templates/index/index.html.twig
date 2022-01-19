@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+{% set active = 'home' %}
+
+{% block content %}
+    <section id="hero" class="d-flex align-items-center">
+        <div class="container position-relative" data-aos="fade-up" data-aos-delay="100">
+            <div class="row justify-content-center">
+                <div class="col-xl-7 col-lg-9 text-center">
+                    <h1>This is Code Exercise</h1>
+                </div>
+            </div>
+
+            <div class="row icon-boxes">
+                <div class="col-md-6 col-lg-4 d-flex align-items-stretch mb-5 mb-lg-0" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="icon-box">
+
+                        <h4 class="title"><a href="{{ path('check_palidrome') }}">Check Palidrome</a></h4>
+                        <p class="description">A string is said to be a palindrome<strong> if the string read from left to right is equal to the string read from right to left.</strong></p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4 d-flex align-items-stretch mb-5 mb-lg-0" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="icon-box">
+
+                        <h4 class="title"><a href="">Check Anagram</a></h4>
+                        <p class="description">An anagram of a string is <strong>another string that contains the same characters, only the order of characters can be different.</strong></p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4 d-flex align-items-stretch mb-5 mb-lg-0" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="icon-box">
+
+                        <h4 class="title"><a href="">Check Pangram</a></h4>
+                        <p class="description">A pangram is<strong> a string that contains all the letters of the English alphabet.</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
