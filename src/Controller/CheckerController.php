@@ -119,21 +119,8 @@ class CheckerController extends AbstractController
             $text = $data['pangram'];
             if($text != null)
             {
-                $alphabetsArray = array('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z');
-                $pangram = false;
-                $characterArray = str_split($text);
-                foreach ($characterArray as $character) {
-                    if(ctype_alpha($character)){
-                        if(ctype_upper($character)){
-                            $character = strtolower($character);
-                        }
-                        $findKeyInAlpha = array_search($character,$alphabetsArray);
-                        if($findKeyInAlpha !== false){
-                            unset($alphabetsArray[$findKeyInAlpha]);
-                        }
-                    }
-                }
-                if(!$alphabetsArray)
+                $isAlphabets = $this->checkAlphaBets($text);
+                if(!$isAlphabets)
                 {
                     $this->addFlash(
                         'success',
@@ -160,5 +147,24 @@ class CheckerController extends AbstractController
         return $this->render('checker/pangram.html.twig',[
             'form' => $form->createView()
         ]);
+    }
+
+    private function checkAlphaBets($text)
+    {
+        $alphabetsArray = array('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z');
+        $pangram = false;
+        $characterArray = str_split($text);
+        foreach ($characterArray as $character) {
+            if(ctype_alpha($character)){
+                if(ctype_upper($character)){
+                    $character = strtolower($character);
+                }
+                $findKeyInAlpha = array_search($character,$alphabetsArray);
+                if($findKeyInAlpha !== false){
+                    unset($alphabetsArray[$findKeyInAlpha]);
+                }
+            }
+        }
+        return $alphabetsArray;
     }
 }
